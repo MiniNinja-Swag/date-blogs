@@ -1,0 +1,10 @@
+title: Date Blogs
+description: Notes, projects, and thoughts
+url: https://minininja-swag.github.io/date-blogs/
+baseurl: /date-blogs
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+markdown: kramdown
