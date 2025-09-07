@@ -3,4 +3,4 @@ layout: home
 title: Home
 ---
 
-Welcome! 👋
+Welcome to our date blog! 💕

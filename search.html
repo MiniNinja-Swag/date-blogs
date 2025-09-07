@@ -1,0 +1,34 @@
+---
+layout: default
+title: Search
+permalink: /search
+---
+<h2>Search</h2>
+<input id="search" placeholder="Type to search…" style="padding:.6rem; width: 100%; max-width: 600px;">
+<ul id="results"></ul>
+
+<script src="{{ '/assets/js/lunr.min.js' | relative_url }}"></script>
+<script>
+(async function(){
+  const res = await fetch('{{ "/search.json" | relative_url }}');
+  const documents = await res.json();
+  const idx = lunr(function () {
+    this.ref('url');
+    this.field('title'); this.field('body'); this.field('tags'); this.field('location');
+    documents.forEach(doc => this.add(doc));
+  });
+  const input = document.getElementById('search');
+  const ul = document.getElementById('results');
+  input.addEventListener('input', () => {
+    ul.innerHTML = '';
+    const q = input.value;
+    if(!q) return;
+    idx.search(q).forEach(r => {
+      const doc = documents.find(d => d.url === r.ref);
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${doc.url}"><strong>${doc.title}</strong></a> · ${doc.location} · ${doc.date}`;
+      ul.appendChild(li);
+    });
+  });
+})();
+</script>

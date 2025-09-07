@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article>
+  <h2>{{ page.title }}</h2>
+  <p class="muted">
+    {{ page.date | date: "%B %d, %Y" }} · {{ page.location }}
+    {% if page.rating %} · ⭐ {{ page.rating }}/5{% endif %}
+  </p>
+
+  <div class="tags">
+    {% for tag in page.tags %}
+      <span class="tag">#{{ tag }}</span>
+    {% endfor %}
+  </div>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  {% include gallery.html %}
+
+  {% include utterances.html %}
+</article>

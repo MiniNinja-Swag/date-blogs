@@ -1,0 +1,10 @@
+{% if page.photos %}
+<h3>Photos</h3>
+<div class="grid">
+  {% for p in page.photos %}
+    <a href="{{ p | relative_url }}" data-lightbox="gallery">
+      <img src="{{ p | relative_url }}" alt="" style="width:100%; border-radius:10px;">
+    </a>
+  {% endfor %}
+</div>
+{% endif %}
