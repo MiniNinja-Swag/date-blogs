@@ -23,4 +23,4 @@ plugins:
 paginate: 6
 paginate_path: "/page:num"
 
-exclude: [admin, node_modules, README.md]
+exclude: [node_modules, README.md]
