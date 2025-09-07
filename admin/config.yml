@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: minininja-swag/date-blogs   # ← make sure this matches your repo
+  name: git-gateway
   branch: main
 
 media_folder: "assets/images"       # files stored in repo
