@@ -1,8 +1,19 @@
+---
+layout: null
+permalink: /admin/
+---
 <!doctype html>
 <html>
-  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Admin</title>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
-  <body></body>
+  <body>
+    <!-- Optional mount node (Decap can create one, but this is safer) -->
+    <div id="nc-root"></div>
+
+    <!-- Load Decap after body so document.body is ready -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+  </body>
 </html>
