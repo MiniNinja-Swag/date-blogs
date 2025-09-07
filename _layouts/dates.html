@@ -12,7 +12,7 @@ layout: default
   {% for d in items %}
   <a class="card" href="{{ d.url | relative_url }}" data-tags="{{ d.tags | join:' ' }}" data-location="{{ d.location | downcase }}">
     <strong>{{ d.title }}</strong>
-    <div class="muted">{{ d.date | date: "%b %d, %Y" }} · {{ d.location }}</div>
+    <div class="muted">{{ d.date | date: "%b %d, %Y" }}{% if d.location %} · {{ d.location }}{% endif %}</div>
     {% if d.photos and d.photos[0] %}
       <img src="{{ d.photos[0] | relative_url }}" alt="" style="width:100%; border-radius:10px; margin-top:.5rem;">
     {% endif %}
@@ -27,7 +27,7 @@ layout: default
   q?.addEventListener('input', () => {
     const term = q.value.toLowerCase();
     cards.forEach(c => {
-      const text = c.innerText.toLowerCase() + ' ' + c.dataset.tags + ' ' + c.dataset.location;
+      const text = c.innerText.toLowerCase() + ' ' + (c.dataset.tags || '') + ' ' + (c.dataset.location || '');
       c.style.display = text.includes(term) ? '' : 'none';
     });
   });
