@@ -1,10 +1,13 @@
 backend:
   name: github
-  repo: minininja-swag/date-blogs
+  repo: minininja-swag/date-blogs   # ← make sure this matches your repo
   branch: main
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
+media_folder: "assets/images"       # files stored in repo
+public_folder: "/assets/images"     # how they’re referenced on the site
+
+# Optional but recommended so you can save drafts/review
+publish_mode: editorial_workflow
 
 collections:
   - name: "dates"
@@ -13,12 +16,31 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: "title", label: "Title" }
+      - { name: "title", label: "Title", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "location", label: "Location", required: false }
-      - { name: "coords", label: "Coords [lat,lon]", widget: "list", allow_add: false, required: false, field: { name: "coord", label: "Coord", widget: "number" } }
+      - { name: "location", label: "Location", widget: "string", required: false }
+
+      # Use two explicit numeric fields for coords (simpler & schema-safe)
+      - label: "Coordinates"
+        name: "coords"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Latitude",  name: "lat", widget: "number", value_type: "float" }
+          - { label: "Longitude", name: "lon", widget: "number", value_type: "float" }
+
       - { name: "tags", label: "Tags", widget: "list", required: false }
       - { name: "rating", label: "Rating (1-5)", widget: "number", min: 1, max: 5, required: false }
       - { name: "summary", label: "Summary", widget: "text", required: false }
-      - { name: "photos", label: "Photos", widget: "list", field: { name:"image", label:"Image", widget:"image" }, required: false }
+
+      # Single image per list item (correct: use "field" with name+widget)
+      - name: "photos"
+        label: "Photos"
+        widget: "list"
+        required: false
+        field:
+          name: "image"
+          label: "Image"
+          widget: "image"
+
       - { name: "body", label: "Body", widget: "markdown" }
