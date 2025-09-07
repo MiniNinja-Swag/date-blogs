@@ -1,7 +1,7 @@
 title: Our Date Blog
 description: Memories from our adventures together
 url: https://minininja-swag.github.io
-baseurl: /date-blog
+baseurl: /date-blogs
 theme: minima
 
 collections:

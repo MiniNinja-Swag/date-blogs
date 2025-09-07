@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: minininja-swag/date-blog
+  repo: minininja-swag/date-blogs
   branch: main
 
 media_folder: "assets/images"
